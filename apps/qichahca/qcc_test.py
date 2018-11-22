@@ -57,8 +57,10 @@ def run(url):
         if redis_conn.hexists('qcc_company_urls', company_name):
             continue
         params = {'key': company_name}
+        cookie = get_cookie('https://m.qichacha.com')
+        print(cookie.items())
         try:
-            response = get_response(url, params=params)
+            response = get_response(url, params=params, cookies=cookie)
             if url == 'https://m.qichacha.com/search':
                 result = save_company_url_sj(response, company_name)
             else:
@@ -71,6 +73,9 @@ def run(url):
             logging.info(e)
 
 
+def get_cookie(url):
+    response = get_response(url)
+    return response.cookies
 
 
 if __name__ == '__main__':
@@ -78,7 +83,7 @@ if __name__ == '__main__':
     # with open('companys.txt', 'r', encoding='utf-8') as fr:
     #     companys = [com.strip() for com in fr.readlines()]
     # redis_conn.sadd('qcc_company_name',*companys)
-
+    # #
     if not os.path.exists('./log'):
         os.mkdir('./log')
 
@@ -87,7 +92,6 @@ if __name__ == '__main__':
                         filename="./log/qcc_info.log",
                         # encoding='utf-8',
                         format='%(asctime)s %(filename)s [line:%(lineno)d] %(levelname)s %(message)s', )
-
     url = 'https://www.qichacha.com/search'
     url_sj = 'https://m.qichacha.com/search'
-    run(url_sj)
+    run(url)
