@@ -23,7 +23,7 @@ idna==2.7
 idna-ssl==1.1.0
 incremental==17.5.0
 ItsDangerous==1.0.0
-Jinja2==2.10
+Jinja2==2.11.3
 Js2Py==0.59
 jsbeautifier==1.8.8
 jsmin==2.2.2
