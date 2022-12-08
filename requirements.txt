@@ -6,7 +6,7 @@ attrs==18.2.0
 Automat==0.7.0
 baidu-aip==2.2.8.0
 bcrypt==3.1.4
-certifi==2018.10.15
+certifi==2022.12.7
 cffi==1.11.5
 chardet==3.0.4
 Click==7.0
